@@ -39,5 +39,13 @@ const deleteTask = async (req, res) => {
   }
 };
 
+const listTask = async (req, res) => {
+  try {
+    const tasks = await Task.findAll();
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar as tarefas', error });
+  }
+};
 
-module.exports = { registerTask, editTask, deleteTask };
+module.exports = { registerTask, editTask, deleteTask, listTask };
